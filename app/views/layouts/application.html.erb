@@ -15,5 +15,27 @@
     <main class="container mx-auto px-5">
       <%= yield %>
     </main>
+
+    <!-- Flash messages -->
+    <% flash.each do |type, message| %>
+      <div id="flash-<%= type %>" class="flash-notice">
+        <%= message %>
+      </div>
+    <% end %>
+
+    <script>
+      // This script will run immediately after the page loads
+      window.onload = function() {
+        // Check if there is a flash notice element present
+        const flashNotice = document.querySelector('.flash-notice');
+        if (flashNotice) {
+          // If a flash notice is present, show it in an alert dialog
+          alert(flashNotice.textContent);
+          // Optionally, remove the flash notice from the DOM after showing it
+          flashNotice.remove();
+        }
+      }
+    </script>
+
   </body>
 </html>
