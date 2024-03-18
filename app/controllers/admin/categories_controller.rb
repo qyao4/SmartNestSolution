@@ -28,7 +28,9 @@ class Admin::CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to admin_categories_path, notice: 'Category was successfully updated.'
     else
-      render :edit
+      logger.info @category.errors.full_messages.to_sentence
+      flash[:alert] = @category.errors.full_messages.to_sentence
+      render :edit, status: :unprocessable_entity
     end
   end
 

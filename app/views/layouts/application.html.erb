@@ -21,7 +21,9 @@
       <div id="flash-<%= type %>" class="flash-notice">
         <%= message %>
       </div>
+      <!-- <% flash.discard(:alert) %>-->
     <% end %>
+    <% flash.clear %>
 
     <script>
       // This script will run immediately after the page loads

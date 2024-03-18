@@ -2,10 +2,10 @@ class Product < ApplicationRecord
   belongs_to :category
 
   # Validates the presence of name, SKU, quantity, and price
-  validates :name, :sku, :quantity, :price, presence: true
+  validates :name, :quantity, :price, presence: true
 
   # Validates the uniqueness of SKU
-  validates :sku, uniqueness: true
+  # validates :sku, uniqueness: true
 
   # Validates that quantity is an integer greater than or equal to 0
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
