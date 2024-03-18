@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :category
 
+  has_many_attached :images
+
   # Validates the presence of name, SKU, quantity, and price
   validates :name, :quantity, :price, presence: true
 

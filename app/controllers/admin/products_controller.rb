@@ -24,6 +24,8 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+    # if @product.update(product_params.except(:images))
+      # attach_new_images if params[:product][:images]
       redirect_to admin_products_path, notice: 'Product was successfully updated.'
     else
       logger.info @product.errors.full_messages.to_sentence
@@ -50,6 +52,14 @@ class Admin::ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:name, :description, :quantity, :price, :category_id)
+    # params.require(:product).permit(:name, :description, :quantity, :price, :category_id)
+    params.require(:product).permit(:name, :description, :quantity, :price, :category_id, images: [])
   end
+
+  # def attach_new_images
+  #   params[:product][:images].each do |image|
+  #     @product.images.attach(image)
+  #   end
+  # end
+
 end
